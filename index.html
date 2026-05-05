@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicción de Distrés Respiratorio</title>
+</head>
+<body>
+    <h1>Predicción de Distrés Respiratorio</h1>
+    <form action="/predict" method="POST">
+        <input type="text" name="feature1" placeholder="Característica 1" required>
+        <input type="text" name="feature2" placeholder="Característica 2" required>
+        <input type="text" name="feature3" placeholder="Característica 3" required>
+        <select name="sexo" required>
+            <option value="0">Masculino</option>
+            <option value="1">Femenino</option>
+        </select>
+        <input type="submit" value="Predecir">
+    </form>
+    {% if prediction_text %}
+        <h3>{{ prediction_text }}</h3>
+    {% endif %}
+</body>
+</html>
