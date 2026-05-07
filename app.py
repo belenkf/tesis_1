@@ -1,4 +1,3 @@
-pip install flask pandas scikit-learn
 
 from flask import Flask, request, render_template
 import pandas as pd

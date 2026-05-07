@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Predicción de Distrés Respiratorio</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; color: #333; }
+        .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h1 { color: #0056b3; text-align: center; }
+        form { display: flex; flex-direction: column; }
+        label { margin-bottom: 5px; font-weight: bold; }
+        input[type="number"], select { padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 4px; }
+        input[type="submit"] { background-color: #007bff; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        input[type="submit"]:hover { background-color: #0056b3; }
+        .result { margin-top: 20px; padding: 15px; background-color: #e9ecef; border-radius: 4px; border: 1px solid #ced4da; text-align: center; font-size: 1.1em; font-weight: bold; }
+        .error { color: red; text-align: center; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Predecir Distrés Respiratorio</h1>
+        <form method="POST" action="/predict">
+            <label for="Driving_presure">Driving Pressure:</label>
+            <input type="number" step="0.01" id="Driving_presure" name="Driving_presure" value="16" required>
+
+            <label for="compliance">Compliance:</label>
+            <input type="number" step="0.01" id="compliance" name="compliance" value="30" required>
+
+            <label for="PaFiO2">PaFiO2:</label>
+            <input type="number" step="0.01" id="PaFiO2" name="PaFiO2" value="300" required>
+
+            <label for="PAM">PAM:</label>
+            <input type="number" step="0.01" id="PAM" name="PAM" value="90" required>
+
+            <label for="frecuencia_cardiaca">Frecuencia Cardíaca:</label>
+            <input type="number" step="0.01" id="frecuencia_cardiaca" name="frecuencia_cardiaca" value="85" required>
+
+            <label for="frecuencia_respiratoria">Frecuencia Respiratoria:</label>
+            <input type="number" step="0.01" id="frecuencia_respiratoria" name="frecuencia_respiratoria" value="24" required>
+
+            <label for="Relac_Neutrofilos_linfocitos">Relación Neutrófilos/Linfocitos:</label>
+            <input type="number" step="0.01" id="Relac_Neutrofilos_linfocitos" name="Relac_Neutrofilos_linfocitos" value="5" required>
+
+            <label for="Indice_urea_creati">Índice Urea/Creatinina:</label>
+            <input type="number" step="0.01" id="Indice_urea_creati" name="Indice_urea_creati" value="0.8" required>
+
+            <label for="Lactato">Lactato:</label>
+            <input type="number" step="0.01" id="Lactato" name="Lactato" value="20" required>
+
+            <label for="sexo">Sexo:</label>
+            <select id="sexo" name="sexo" required>
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+            </select>
+
+            <label for="PCR">PCR:</label>
+            <input type="number" step="0.01" id="PCR" name="PCR" value="5.0" required>
+
+            <input type="submit" value="Predecir">
+        </form>
+        {% if prediction_text %}
+            <div class="result">{{ prediction_text }}</div>
+        {% endif %}
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
